@@ -86,6 +86,7 @@ A aplicação disponibiliza uma API RESTful completa que responde em formato **J
 
 ## 👥 Autores e Projeto Acadêmico
 
+- **Autor:** Helder Virissio Araujo
 - **Curso:** Desenvolvimento de Software Multiplataforma (DSM) — 3º Semestre
 - **Instituição:** FATEC Diadema
 - **Disciplina:** Desenvolvimento Web III
