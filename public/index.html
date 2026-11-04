@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque - Projeto 08</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Sistema de Controle de Estoque</h1>
+            <!-- Caixa dinamica de mensagens de sucesso e erro -->
+            <div id="alert-box" class="alert hidden"></div>
+        </header>
+
+        <!-- Indicador de valor total em estoque -->
+        <section class="dashboard card">
+            <h2>Resumo do Estoque</h2>
+            <div class="dash-item">
+                <span>Valor Total em Estoque:</span>
+                <strong id="valor-total-estoque">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <!-- Seção de Fornecedores -->
+        <section class="card">
+            <h2>Fornecedores</h2>
+            <!-- Formulário para busca de CNPJ via BrasilAPI -->
+            <form id="form-cnpj" class="inline-form">
+                <input type="text" id="cnpj-busca" placeholder="Digite o CNPJ (somente números)" maxlength="14" required>
+                <button type="submit" class="btn secondary">Consultar BrasilAPI</button>
+            </form>
+
+            <!-- Formulário de cadastro/edição de fornecedor -->
+            <form id="form-fornecedor" class="form-grid">
+                <input type="hidden" id="fornecedor-id">
+                <input type="text" id="fornecedor-razao" placeholder="Razão Social *" required>
+                <input type="text" id="fornecedor-fantasia" placeholder="Nome Fantasia">
+                <input type="text" id="fornecedor-cnpj" placeholder="CNPJ *" required>
+                <input type="text" id="fornecedor-telefone" placeholder="Telefone">
+                <input type="email" id="fornecedor-email" placeholder="E-mail">
+                <input type="text" id="fornecedor-endereco" placeholder="Endereço">
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Salvar Fornecedor</button>
+                    <button type="button" id="btn-cancelar-fornecedor" class="btn hidden">Cancelar</button>
+                </div>
+            </form>
+
+            <h3>Fornecedores Cadastrados</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Razão Social</th><th>CNPJ</th><th>Telefone</th><th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-fornecedores"></tbody>
+            </table>
+        </section>
+
+        <!-- Seção de Produtos -->
+        <section class="card">
+            <h2>Produtos</h2>
+            <!-- Formulário de cadastro/edição de produtos -->
+            <form id="form-produto" class="form-grid">
+                <input type="hidden" id="produto-id">
+                <input type="text" id="produto-nome" placeholder="Nome do Produto *" required>
+                <input type="text" id="produto-codigo" placeholder="Código do Produto *" required>
+                <input type="text" id="produto-categoria" placeholder="Categoria *" required>
+                <input type="number" step="0.01" id="produto-preco" placeholder="Preço Unitário (R$) *" min="0" required>
+                <input type="number" id="produto-quantidade" placeholder="Quantidade *" min="0" required>
+                <select id="produto-fornecedor" required>
+                    <option value="">Selecione o Fornecedor *</option>
+                </select>
+                <textarea id="produto-descricao" placeholder="Descrição"></textarea>
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Salvar Produto</button>
+                    <button type="button" id="btn-cancelar-produto" class="btn hidden">Cancelar</button>
+                </div>
+            </form>
+
+            <!-- Barra de pesquisas e filtros -->
+            <div class="filter-bar">
+                <input type="text" id="busca-nome" placeholder="Pesquisar produto por nome...">
+                <select id="filtro-categoria">
+                    <option value="">Todas as Categorias</option>
+                </select>
+            </div>
+
+            <h3>Lista de Produtos</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Código</th><th>Nome</th><th>Categoria</th><th>Preço</th><th>Qtd</th><th>Fornecedor</th><th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-produtos"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Modulos JavaScript front-end -->
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
